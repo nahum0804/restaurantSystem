@@ -9,8 +9,8 @@ public class PedidoLocal extends Pedido{
      * @param horaPedido
      * @param numeroMesa
      */
-    public PedidoLocal(Producto producto, String horaPedido, byte numeroMesa) {
-        super(producto, horaPedido);
+    public PedidoLocal(Producto producto, String horaPedido, boolean finalizado, byte numeroMesa) {
+        super(producto, horaPedido, finalizado);
         this.numeroMesa = numeroMesa;
     }
 
