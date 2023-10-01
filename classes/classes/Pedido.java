@@ -78,10 +78,10 @@ public abstract class Pedido {
 
     /**
      * Set the value of producto
-     * @param producto
      */
-    public void setProducto(ArrayList<Producto> producto) {
+    public void setProducto() {
         System.out.println("Set the value of producto function");
+        
     }
 
 
