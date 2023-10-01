@@ -6,16 +6,19 @@ public abstract class Pedido {
     private String horaPedido;
     protected boolean finalizado;
     private ArrayList<Producto> producto;
-
+    private Cliente cliente;
+    private Empleado empleado;
     /**
      * Constructor
      * @param horaPedido
      * @param finalizado
      */
-    public Pedido(Producto producto, String horaPedido, boolean finalizado) {
+    public Pedido(Producto producto, String horaPedido, boolean finalizado, Cliente cliente, Empleado empleado) {
         this.horaPedido = horaPedido;
         this.finalizado = finalizado;
         this.producto = new ArrayList<Producto>();
+        this.cliente = cliente;
+        this.empleado = empleado;
         //Add the product to the list
         this.producto.add(producto);
     }

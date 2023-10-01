@@ -75,7 +75,6 @@ public class ServicioExpress {
     /**
      * Verify if the pedido has been finished
      */
-
     public void verificarFinalizado(){
         if (entregado == true){
             System.out.println("El pedido ha sido entregado");

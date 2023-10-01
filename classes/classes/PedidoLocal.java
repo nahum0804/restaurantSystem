@@ -8,9 +8,12 @@ public class PedidoLocal extends Pedido{
      * @param producto
      * @param horaPedido
      * @param numeroMesa
+     * @param finalizado
+     * @param cliente
+     * @param empleado
      */
-    public PedidoLocal(Producto producto, String horaPedido, boolean finalizado, byte numeroMesa) {
-        super(producto, horaPedido, finalizado);
+    public PedidoLocal(Producto producto, String horaPedido, boolean finalizado, byte numeroMesa, Cliente cliente, Empleado empleado) {
+        super(producto, horaPedido, finalizado, cliente, empleado);
         this.numeroMesa = numeroMesa;
     }
 

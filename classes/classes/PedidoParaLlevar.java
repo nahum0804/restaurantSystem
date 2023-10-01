@@ -10,9 +10,12 @@ public class PedidoParaLlevar extends Pedido{
      * @param horaPedido
      * @param hora
      * @param fecha
+     * @param finalizado
+     * @param cliente
+     * @param empleado
      */
-    public PedidoParaLlevar(Producto producto, String horaPedido, boolean finalizado, String hora, String fecha) {
-        super(producto, horaPedido, finalizado);
+    public PedidoParaLlevar(Producto producto, String horaPedido, boolean finalizado, String hora, String fecha, Cliente cliente, Empleado empleado) {
+        super(producto, horaPedido, finalizado, cliente, empleado);
         this.hora = hora;
         this.fecha = fecha;
     }

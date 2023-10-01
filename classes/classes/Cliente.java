@@ -9,7 +9,7 @@ public class Cliente extends Persona{
     /**
      * Constructor
      * @param nombreCompleto
-     * @param direccion
+     * @param string
      * @param numeroContacto
      * @param genero
      * @param edad

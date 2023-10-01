@@ -1,19 +1,30 @@
 package classes;
 
-public class PedidoExpress {
+public class PedidoExpress extends Pedido{
     private Direccion direccionEntrega;
     private String horaEntrega;
     private boolean entregado;
+    
 
     /**
      * Constructor
      * @param direccionEntrega
      * @param horaEntrega
+     * @param entregado
+     * @param producto
+     * @param horaPedido
+     * @param finalizado
+     * @param cliente
+     * @param empleado
+     * 
      */
-    public PedidoExpress(Direccion direccionEntrega, String horaEntrega) {
+    public PedidoExpress(Producto producto, String horaPedido, boolean finalizado, Direccion direccionEntrega, String horaEntrega, Cliente cliente, Empleado empleado) {
+        super(producto, horaPedido, finalizado, cliente, empleado);
         this.direccionEntrega = direccionEntrega;
         this.horaEntrega = horaEntrega;
         this.entregado = false;
+        
+
     }
 
     /**
