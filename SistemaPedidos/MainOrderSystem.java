@@ -3,27 +3,27 @@ package SistemaPedidos;
 import classes.Cliente;
 import classes.Direccion;
 import classes.Pedido;
+import classes.PedidoExpress;
 import classes.PedidoLocal;
+import classes.PedidoParaLlevar;
 import classes.Producto;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class MainOrderSystem {
-    private static Pedido pedidoExpress;
-    private static Pedido pedidoLocal;
-    private static Pedido pedidoParaLlevar;
-
-    public static ArrayList<Pedido> obtenerPedidos() {
-        ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
-        // Aquí puedes agregar elementos a la lista si es necesario
-        return pedidos;
-    }
+    public static ArrayList<PedidoLocal>  pedidosLocales = new ArrayList<PedidoLocal>();
+    public static ArrayList<PedidoParaLlevar> pedidosParaLlevars = new ArrayList<PedidoParaLlevar>();
+    public static ArrayList<PedidoExpress> pedidosExpresses = new ArrayList<PedidoExpress>();
+        
+            
+    
     public static void main(String[] args) {
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
         
+        pedidosParaLlevars = new ArrayList<PedidoParaLlevar>();
+
         System.out.println("Crear orden");
                     // Set the value of direccion
                     Scanner scanner = new Scanner(System.in);
@@ -96,10 +96,14 @@ public class MainOrderSystem {
                                 System.out.println("Ingrese (y) si desea agregar un producto"); 
                                 //Get string input in option variable
                                 validar = scanner.nextLine();
+                                if (validar != "y") {
+                                pedidosExpresses.add(pedidoExpress);
+                                }
+                                
                                 
                             } while (validar.equals("y"));
                             
-                            pedidos.add(pedidoExpress);
+                            
                             break;
                         case 2:
                             System.out.println("Pedido para llevar");
@@ -127,9 +131,12 @@ public class MainOrderSystem {
                                 System.out.println("Ingrese (y) si desea agregar un producto"); 
                                 //Get string input in option variable
                                 validar = scanner.nextLine();
+                                if (validar != "y") {
+                                pedidosParaLlevars.add(pedidoParaLlevar);
+                                }
                                 
                             } while (validar.equals("y"));
-                            pedidos.add(pedidoParaLlevar);
+                            
                             break;
                         case 3:
                             System.out.println("Pedido en el restaurante");
@@ -159,9 +166,11 @@ public class MainOrderSystem {
                                 System.out.println("Ingrese (y) si desea agregar un producto"); 
                                 //Get string input in option variable
                                 validar = scanner.nextLine();
+                                if (validar != "y") {
+                                pedidosLocales.add(pedidoLocal);
+                                }
                                 
                             } while (validar.equals("y"));
-                            pedidos.add(pedidoLocal);
                             // incorporate the products to the order
                             
 
@@ -170,7 +179,23 @@ public class MainOrderSystem {
                             System.out.println("Opción no válida");
                             break;
                     }
+        
     }
-    // Get the variable global of pedidos
-   
+    
+    //Get the value of pedidosLocales
+    public static ArrayList<PedidoLocal> getPedidosLocales() {
+        return pedidosLocales;
+    }
+
+    //Get the value of pedidosParaLlevars
+    public static ArrayList<PedidoParaLlevar> getPedidosParaLlevars() {
+        return pedidosParaLlevars;
+    }
+
+    //Get the value of pedidosExpresses
+    public static ArrayList<PedidoExpress> getPedidosExpresses() {
+        return pedidosExpresses;
+    }
+    
+    
 }
