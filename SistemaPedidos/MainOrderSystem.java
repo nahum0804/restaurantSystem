@@ -1,8 +1,7 @@
 package SistemaPedidos;
-
+//Import the classes
 import classes.Cliente;
 import classes.Direccion;
-import classes.Pedido;
 import classes.PedidoExpress;
 import classes.PedidoLocal;
 import classes.PedidoParaLlevar;
@@ -12,6 +11,7 @@ import java.util.Scanner;
 
 
 public class MainOrderSystem {
+    //Variable to storage the pedidos in arrays
     public static ArrayList<PedidoLocal>  pedidosLocales = new ArrayList<PedidoLocal>();
     public static ArrayList<PedidoParaLlevar> pedidosParaLlevars = new ArrayList<PedidoParaLlevar>();
     public static ArrayList<PedidoExpress> pedidosExpresses = new ArrayList<PedidoExpress>();
@@ -139,6 +139,7 @@ public class MainOrderSystem {
                             
                             break;
                         case 3:
+                            
                             System.out.println("Pedido en el restaurante");
                             
                             System.out.println("Ingrese la hora del pedido");
@@ -196,6 +197,6 @@ public class MainOrderSystem {
     public static ArrayList<PedidoExpress> getPedidosExpresses() {
         return pedidosExpresses;
     }
-    
+
     
 }

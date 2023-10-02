@@ -101,4 +101,38 @@ public abstract class Pedido {
         descuento = descuento / 100;
         return costoProducto - (costoProducto * descuento);
     }
+
+    /**
+     * set the value of cliente
+     * @param cliente
+     */
+    
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    /**
+     * Get the value of cliente
+     * @return
+     */
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    /**
+     * Set the value of empleado
+     * @param empleado
+     */
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    /**
+     * Get the value of empleado
+     * @return
+     */
+    public Empleado getEmpleado() {
+        return empleado;
+    }
 }
