@@ -30,6 +30,7 @@ public class MainConfOrders {
         System.out.println("1. Pedidos express");
         System.out.println("2. Pedidos Para llevar");
         System.out.println("3. Pedidos para el restaurante");
+        System.out.println("4. Salir");
 
         //Read the user input
         int option = scanner.nextInt();
@@ -189,63 +190,87 @@ public class MainConfOrders {
             
         
             }
-        case 3:
-            System.out.println("Pedidos para el restaurante");
-            //Create a new instance of the MainOrderSystem class
-            //Call the method to get the pedidos
-            ArrayList<PedidoLocal> pedidosLocals = mainOrderSystem.getPedidosLocales();
-            
-            //Show the options to do with the pedido
-            System.out.println("Digite el numero de la opcion que desea realizar");
-            System.out.println("1. Ver pedidos");
-            System.out.println("2. Marcar pedido como finalizado");
-            System.out.println("3. Ver estado de las ordenes en general");
-            //Read the user input
-            int optionPedidoLocal = scanner.nextInt();
-            //Create a switch to manage the user input
-            switch (optionPedidoLocal) {
-                case 1:
-                    //Call the method to display the pedidos
-                    //Iterate the pedidos
-                    for (PedidoLocal pedidoLocal : pedidosLocals) {
-                        //obtain the name of the employee
-                        String nombreEmpleadoPedido = pedidoLocal.getEmpleado().getNombreCompleto();
-                        //Verify if the name of the employee is the same that the user input
-                        if (nombreEmpleadoPedido.equals(nombreEmpleado)) {
-                            //display the pedido
-                            System.out.println(pedidoLocal);
-                        }
-                    }
-                    break;
-                case 2:
-                    //iterate the pedidos
-                    for (PedidoLocal pedidoLocal : pedidosLocals) {
-                        //obtain the name of the employee
-                        String nombreEmpleadoPedido = pedidoLocal.getEmpleado().getNombreCompleto();
-                        //Verify if the name of the employee is the same that the user input
-                        if (nombreEmpleadoPedido.equals(nombreEmpleado)) {
-                            //display the pedido
-                            System.out.println(pedidoLocal);
-                            //Validate if the employee want to mark the pedido as finished
-                            System.out.println("¿Desea marcar el pedido como finalizado?");
-                            System.out.println("1. Si");
-                            System.out.println("2. No");
-                            //Read the user input
-                            int optionMark = scanner.nextInt();
-                            //Create a switch to manage the user input
-                            switch (optionMark) {
-                                case 1:
-                                    //Call the method to mark the pedido as finished
-                                    pedidoLocal.setFinalizado(true);
-                                    break;
-                                case 2:
-                                    break;
-                                default:
-                                    System.out.println("Opción no válida");
+            case 3:
+                System.out.println("Pedidos para el restaurante");
+                //Create a new instance of the MainOrderSystem class
+                //Call the method to get the pedidos
+                ArrayList<PedidoLocal> pedidosLocals = mainOrderSystem.getPedidosLocales();
+                
+                //Show the options to do with the pedido
+                System.out.println("Digite el numero de la opcion que desea realizar");
+                System.out.println("1. Ver pedidos");
+                System.out.println("2. Marcar pedido como finalizado");
+                System.out.println("3. Ver estado de las ordenes en general");
+                System.out.println("4. Retroceder");
+                //Read the user input
+                int optionPedidoLocal = scanner.nextInt();
+                //Create a switch to manage the user input
+                switch (optionPedidoLocal) {
+                    case 1:
+                        //Call the method to display the pedidos
+                        //Iterate the pedidos
+                        for (PedidoLocal pedidoLocal : pedidosLocals) {
+                            //obtain the name of the employee
+                            String nombreEmpleadoPedido = pedidoLocal.getEmpleado().getNombreCompleto();
+                            //Verify if the name of the employee is the same that the user input
+                            if (nombreEmpleadoPedido.equals(nombreEmpleado)) {
+                                //display the pedido
+                                System.out.println(pedidoLocal);
                             }
                         }
-                    }
+                        break;
+                    case 2:
+                        //iterate the pedidos
+                        for (PedidoLocal pedidoLocal : pedidosLocals) {
+                            //obtain the name of the employee
+                            String nombreEmpleadoPedido = pedidoLocal.getEmpleado().getNombreCompleto();
+                            //Verify if the name of the employee is the same that the user input
+                            if (nombreEmpleadoPedido.equals(nombreEmpleado)) {
+                                //display the pedido
+                                System.out.println(pedidoLocal);
+                                //Validate if the employee want to mark the pedido as finished
+                                System.out.println("¿Desea marcar el pedido como finalizado?");
+                                System.out.println("1. Si");
+                                System.out.println("2. No");
+                                //Read the user input
+                                int optionMark = scanner.nextInt();
+                                //Create a switch to manage the user input
+                                switch (optionMark) {
+                                    case 1:
+                                        //Call the method to mark the pedido as finished
+                                        pedidoLocal.setFinalizado(true);
+                                        break;
+                                    case 2:
+                                        break;
+                                    default:
+                                        System.out.println("Opción no válida");
+                                }
+                            }
+                        }
+                    case 3:
+                        //iterate the pedidos to display the status with no import the employee
+                        for (PedidoLocal pedidoLocal : pedidosLocals) {
+                            //display the status of finished
+                            System.out.println("El pedido del cliente " + pedidoLocal.getCliente().getNombreCompleto() + " tiene un estado de finalizado de " + pedidoLocal.isFinalizado());
+                        }
+                        break;
+                    case 4:
+                        try {
+                    MainMenu.App.main(args);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
                 }
+                        break;
+                    default:
+                        System.out.println("Opción no válida");
+                        SistemaConfOrdenes.MainConfOrders.main(args);
+
+                    }
+            case 4:
+                    SistemaPedidos.MainOrderSystem.main(args);
+
         }
+        
     }
 }

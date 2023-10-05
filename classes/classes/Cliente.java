@@ -1,6 +1,9 @@
 package classes;
 
+import java.util.ArrayList;
+
 public class Cliente extends Persona{
+    ArrayList<Direccion> direcciones = new ArrayList<Direccion>();
     private Direccion direccion;
     private String numeroContacto;
     private String genero;
@@ -9,25 +12,25 @@ public class Cliente extends Persona{
     /**
      * Constructor
      * @param nombreCompleto
-     * @param string
+     * @param ArrayList<Direccion>
      * @param numeroContacto
      * @param genero
      * @param edad
      */
-    public Cliente(String nombreCompleto, Direccion direccion, String numeroContacto, String genero, String edad) {
+    public Cliente(String nombreCompleto, ArrayList<Direccion> direccion, String numeroContacto, String genero, String edad) {
         super(nombreCompleto);
-        this.direccion = direccion;
+        this.direcciones = direccion;
         this.numeroContacto = numeroContacto;
         this.genero = genero;
         this.edad = edad;
     }
 
     /**
-     * Get the value of direccion
+     * Get directions list
      * @return
      */
-    public Direccion getDireccion() {
-        return direccion;
+    public ArrayList<Direccion> getDireccion() {
+        return direcciones;
     }
 
     /**
