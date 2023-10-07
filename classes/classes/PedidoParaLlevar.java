@@ -1,6 +1,8 @@
 package classes;
 
-public class PedidoParaLlevar extends Pedido{
+import java.io.Serializable;
+
+public class PedidoParaLlevar extends Pedido implements Serializable {
     private String hora;
     private String fecha;
 

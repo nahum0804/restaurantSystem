@@ -1,6 +1,9 @@
 package classes;
 
-public class Empleado extends Persona {
+import java.io.Serializable;
+
+
+public class Empleado extends Persona implements Serializable{
 
     /* 
         Verificar como están agregados los atributos en las clases

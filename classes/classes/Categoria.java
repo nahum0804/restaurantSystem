@@ -1,6 +1,8 @@
 package classes;
 
-public abstract class Categoria {
+import java.io.Serializable;
+
+public abstract class Categoria implements Serializable{
     protected String tipoCategoria;
     protected float descuentoCategoria;
 

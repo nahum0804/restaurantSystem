@@ -18,10 +18,6 @@ public class MainConfOrders {
         //Create a scanner object to read the user input
         Scanner scanner = new Scanner(System.in);
         
-        
-        
-        
-        
         //Display menu options to the user for manage the orders
         System.out.println("Bienvenido al sistema de configuración de ordenes");
         System.out.println("Digite el nombre de empleado en turno:");
@@ -39,7 +35,7 @@ public class MainConfOrders {
 
         switch (option) {
             case 1:
-                System.out.println("Pedidos express");
+                //System.out.println("Pedidos express");
                 //Create a new instance of the MainOrderSystem class
                 //Call the method to get the pedidos
                 ArrayList<PedidoExpress> pedidosExpress = mainOrderSystem.getPedidosExpresses();
@@ -117,7 +113,7 @@ public class MainConfOrders {
                 break;
             //do the same for the other options
             case 2:
-                System.out.println("Pedidos para llevar");
+                //System.out.println("Pedidos para llevar");
                 //Create a new instance of the MainOrderSystem class
                 //Call the method to get the pedidos
                 ArrayList<PedidoParaLlevar> pedidosParaLlevar = mainOrderSystem.getPedidosParaLlevars();
@@ -181,17 +177,11 @@ public class MainConfOrders {
                         }
                         break;    
                     default:
-                    System.out.println("Opción no válida");
-                    break;
-            
-                
-
-
-            
-        
+                        System.out.println("Opción no válida");
+                        break;
             }
             case 3:
-                System.out.println("Pedidos para el restaurante");
+                //System.out.println("Pedidos para el restaurante");
                 //Create a new instance of the MainOrderSystem class
                 //Call the method to get the pedidos
                 ArrayList<PedidoLocal> pedidosLocals = mainOrderSystem.getPedidosLocales();
@@ -215,9 +205,11 @@ public class MainConfOrders {
                             //Verify if the name of the employee is the same that the user input
                             if (nombreEmpleadoPedido.equals(nombreEmpleado)) {
                                 //display the pedido
-                                System.out.println(pedidoLocal);
+                                System.out.println(pedidoLocal.toString());
                             }
                         }
+                        //Go to the main menu
+                        MainConfOrders.main(args);
                         break;
                     case 2:
                         //iterate the pedidos
@@ -247,12 +239,17 @@ public class MainConfOrders {
                                 }
                             }
                         }
+                        //Go to the main menu
+                        MainConfOrders.main(args);
+                        break;
                     case 3:
                         //iterate the pedidos to display the status with no import the employee
                         for (PedidoLocal pedidoLocal : pedidosLocals) {
                             //display the status of finished
                             System.out.println("El pedido del cliente " + pedidoLocal.getCliente().getNombreCompleto() + " tiene un estado de finalizado de " + pedidoLocal.isFinalizado());
                         }
+                        //Go to the main menu
+                        MainConfOrders.main(args);
                         break;
                     case 4:
                         try {
@@ -273,4 +270,8 @@ public class MainConfOrders {
         }
         
     }
+
+    //Listen Orders from server using sockets
+    public void
+
 }

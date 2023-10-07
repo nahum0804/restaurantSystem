@@ -1,11 +1,14 @@
 package classes;
 
-public class PedidoExpress extends Pedido{
+import java.io.Serializable;
+
+public class PedidoExpress extends Pedido implements Serializable {
     private Direccion direccionEntrega;
     private String horaEntrega;
     private boolean entregado;
     
 
+    
     /**
      * Constructor
      * @param direccionEntrega
@@ -23,9 +26,8 @@ public class PedidoExpress extends Pedido{
         this.direccionEntrega = direccionEntrega;
         this.horaEntrega = horaEntrega;
         this.entregado = false;
-        
-
     }
+
 
     /**
      * Get the value of direccionEntrega

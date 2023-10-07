@@ -28,17 +28,16 @@ public class App {
         //Create a switch to manage the user input
         switch (option) {
             case 1:
-                System.out.println("Servicio express");
+                //System.out.println("Servicio express");
                 SistemaDelivery.MainDeliverySys.main(args);
                 break;
             case 2:
                 //Execute the MainConfOrders class
-                System.out.println("Servicio de pedidos");
+                //System.out.println("Servicio de pedidos");
                 SistemaPedidos.MainOrderSystem.main(args);
-
                 break;
             case 3:
-                System.out.println("Sistema de confección de ordenes");
+                //System.out.println("Sistema de confección de ordenes");
                 SistemaConfOrdenes.MainConfOrders.main(args);
                 break;
         }

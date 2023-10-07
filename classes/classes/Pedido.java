@@ -1,8 +1,9 @@
 package classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Pedido {
+public abstract class Pedido implements Serializable{
     private String horaPedido;
     protected boolean finalizado;
     private ArrayList<Producto> producto;
@@ -81,10 +82,11 @@ public abstract class Pedido {
 
     /**
      * Set the value of producto
+     * @param producto
      */
-    public void setProducto() {
-        System.out.println("Set the value of producto function");
-        
+    public void initializeOrder(Producto newProducto) {
+        //Add in the first position
+        this.producto.add(0, newProducto);
     }
 
 

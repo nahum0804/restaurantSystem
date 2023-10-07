@@ -1,6 +1,8 @@
 package classes;
 
-public class PedidoLocal extends Pedido{
+import java.io.Serializable;
+
+public class PedidoLocal extends Pedido implements Serializable {
     private byte numeroMesa;
 
     /**
@@ -32,5 +34,15 @@ public class PedidoLocal extends Pedido{
      */
     public void setNumeroMesa(byte numeroMesa) {
         this.numeroMesa = numeroMesa;
+    }
+
+    /**
+     * To String
+     * @return
+     */
+    @Override
+    public String toString() {
+        return "PedidoLocal [numeroMesa=" + numeroMesa + "]";
+
     }
 }

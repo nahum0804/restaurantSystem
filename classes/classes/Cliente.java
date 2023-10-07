@@ -1,8 +1,9 @@
 package classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cliente extends Persona{
+public class Cliente extends Persona implements Serializable{
     ArrayList<Direccion> direcciones = new ArrayList<Direccion>();
     private Direccion direccion;
     private String numeroContacto;
