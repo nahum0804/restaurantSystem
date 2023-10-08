@@ -222,6 +222,79 @@ public class MainDeliverySys {
 
 
     public static void menu(){
+
+        int opcion;
+
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Sistema de Servicios Express");
+        System.out.println("----------------------------");
+        System.out.println("1. Registrarse");
+        System.out.println("2. Iniciar Sesión");
+        System.out.println("3. Salir");
+        System.out.println("Digite su opción: ");
+        opcion = entrada.nextInt();
+        switch (opcion) {
+            case 1:
+                signin();
+                break;
+            case 2:
+                login();
+                break;
+            case 3:
+                break;
+        }
+    }
+
+    public static void signin() {
+        String name;
+        String ced;
+        String numContact;
+        String medio;
+        String placa;
+        String vehiculo;
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite su nombre");
+        name = entrada.nextLine();
+        System.out.println("Digite su numero de cedula");
+        ced = entrada.nextLine();
+        System.out.println("Digite su numero de telefono");
+        numContact = entrada.nextLine();
+        System.out.println("Digite su medio de transporte");
+        medio = entrada.nextLine();
+        System.out.println("Digite su numero de placa");
+        placa = entrada.nextLine();
+        System.out.println("Digite su tipo de vehiculo");
+        vehiculo = entrada.nextLine();
+        RegistroEntidades nuevaEntidad = new RegistroEntidades(name, ced, numContact, medio, placa, vehiculo);
+        listaEntidades.add(nuevaEntidad);
+        menu();
+    }
+
+    public static void login() {
+        String cedBuscar;
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite su numero de cedula: ");
+        cedBuscar = entrada.nextLine();
+
+        for (RegistroEntidades entidad : listaEntidades) {
+            if (entidad.getNumeroCedula().equals(cedBuscar)) {
+                lookOrders();
+            }
+        }
+        String resp;
+        System.out.println("Cedula no encontrada. ¿Desea registrarse? (y/n)");
+        resp = entrada.next();
+        if (resp.equals("y")) {
+            signin();
+        } else if (resp.equals("n")) {
+            login();
+        } else {
+            System.out.println("Respuesta invalida");
+            login();
+        }
+    }
+    
+    public static void lookOrders() {
         while (true) {
             System.out.println("Menú");
             System.out.println("1. Ver datos");
@@ -280,24 +353,21 @@ public class MainDeliverySys {
 
         try {
             serverSocket = new ServerSocket(5001);
-            //System.out.println("Servidor esperando conexiones en el puerto 127.0.0.1");
 
             while (true) {
                 clientSocket = serverSocket.accept();
-                //System.out.println("Cliente conectado desde " + clientSocket.getInetAddress());
 
                 entradaObjeto = new ObjectInputStream(clientSocket.getInputStream());
 
-                //System.out.println("Esperando objeto...");
-
                 Object objeto = entradaObjeto.readObject();
 
-                PedidoExpress pedido = (PedidoExpress) objeto;
+                // Filtrar el objeto
+                if(objeto instanceof PedidoExpress){
+                    PedidoExpress pedido = (PedidoExpress) objeto;
 
-                //System.out.println("Pedido Recibido: " + pedido.getCliente().getNombreCompleto());
-
-                // Agregar el pedido a la lista
-                listaPedidosExpress.add(pedido);                
+                    // Agregar el pedido a la lista
+                    listaPedidosExpress.add(pedido); 
+                }               
             }
         } catch (Exception e) {
             e.printStackTrace();
