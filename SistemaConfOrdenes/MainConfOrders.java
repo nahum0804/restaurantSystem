@@ -1,23 +1,33 @@
 package SistemaConfOrdenes;
 
+import java.io.ObjectInputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import SistemaPedidos.MainOrderSystem;
 import classes.PedidoExpress;
 import classes.PedidoLocal;
 import classes.PedidoParaLlevar;
+import classes.Producto;
 
 public class MainConfOrders {
-    private static MainOrderSystem mainOrderSystem;
 
-    public static void main(String[] args) {
-        //Variable to storage the pedidos in arrays        
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-        //Create a scanner object to read the user input
-        Scanner scanner = new Scanner(System.in);
-        
+    static ArrayList<PedidoExpress> pedidosExpress = new ArrayList<>();
+    static ArrayList<PedidoParaLlevar> pedidosParaLlevar = new ArrayList<>();
+    static ArrayList<PedidoLocal> pedidosLocals = new ArrayList<>();
+
+    public static void menu() {
+    //Variable to storage the pedidos in arrays        
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+    //Create a scanner object to read the user input
+    Scanner scanner = new Scanner(System.in);
+
+    //Create a lists to storage the pedidos
+
+
+    while(true){
         //Display menu options to the user for manage the orders
         System.out.println("Bienvenido al sistema de configuración de ordenes");
         System.out.println("Digite el nombre de empleado en turno:");
@@ -37,8 +47,6 @@ public class MainConfOrders {
             case 1:
                 //System.out.println("Pedidos express");
                 //Create a new instance of the MainOrderSystem class
-                //Call the method to get the pedidos
-                ArrayList<PedidoExpress> pedidosExpress = mainOrderSystem.getPedidosExpresses();
                 
                 //Show the options to do with the pedido
                 System.out.println("Digite el numero de la opcion que desea realizar");
@@ -47,6 +55,7 @@ public class MainConfOrders {
                 System.out.println("3. Ver estado de las ordenes en general");
                 //Read the user input
                 int optionPedido = scanner.nextInt();
+                scanner.nextLine();
                 //Create a switch to manage the user input
                 switch (optionPedido) {
                     case 1:
@@ -58,7 +67,27 @@ public class MainConfOrders {
                             //Verify if the name of the employee is the same that the user input
                             if (nombreEmpleadoPedido.equals(nombreEmpleado)) {
                                 //display the pedido
-                                System.out.println(pedidoExpress);
+                                System.out.println("-------------------------------------------------");
+                                System.out.println("Pedido de " + pedidoExpress.getCliente().getNombreCompleto());
+                                //save in a variable the array of productos
+                                ArrayList<Producto> productosExpress = pedidoExpress.getProducto();
+                                //iterate the array of productos
+                                for (Producto producto : productosExpress) {
+                                    //display the productos
+                                    if(producto != null){
+                                    System.out.println("Descripcion del producto: " + producto.getDescripcionProducto());
+                                    System.out.println("Precio del producto: " + producto.getCostoIndividualProducto());
+                                    System.out.println("Categoria del producto: " + producto.getTipoCategoria());
+                                    System.out.println("\n");
+                                    }
+                                }
+                                System.out.println("Hora del pedido: " + pedidoExpress.getHoraPedido());
+                                System.out.println("Hora de entrega: " + pedidoExpress.getHoraEntrega());
+                                System.out.println("Dirección de entrega: " + pedidoExpress.getDireccionEntrega());
+                                System.out.println("Estado de entrega: " + pedidoExpress.isEntregado());
+                                System.out.println("Estado de finalizado: " + pedidoExpress.isFinalizado());
+                                System.out.println("-------------------------------------------------");
+
                             }
                         }
                         break;
@@ -77,6 +106,7 @@ public class MainConfOrders {
                                 System.out.println("2. No");
                                 //Read the user input
                                 int optionMark = scanner.nextInt();
+                                scanner.nextLine();
                                 //Create a switch to manage the user input
                                 switch (optionMark) {
                                     case 1:
@@ -89,8 +119,6 @@ public class MainConfOrders {
                                         System.out.println("Opción no válida");
                                         break;
                                 }
-
-                                
                             }
                         }
                         break;
@@ -100,23 +128,17 @@ public class MainConfOrders {
                             //display the status of finished
                             System.out.println("El pedido del cliente " + pedidoExpress.getCliente().getNombreCompleto() + " tiene un estado de finalizado de " + pedidoExpress.isFinalizado());
                         }
-
-
                         break;
                     default:
                         System.out.println("Opción no válida");
                         break;
-
                 }
-                
-               
                 break;
             //do the same for the other options
             case 2:
                 //System.out.println("Pedidos para llevar");
                 //Create a new instance of the MainOrderSystem class
-                //Call the method to get the pedidos
-                ArrayList<PedidoParaLlevar> pedidosParaLlevar = mainOrderSystem.getPedidosParaLlevars();
+
                 
                 //Show the options to do with the pedido
                 System.out.println("Digite el numero de la opcion que desea realizar");
@@ -136,7 +158,25 @@ public class MainConfOrders {
                             //Verify if the name of the employee is the same that the user input
                             if (nombreEmpleadoPedido.equals(nombreEmpleado)) {
                                 //display the pedido
-                                System.out.println(pedidoParaLlevar);
+                                System.out.println("-------------------------------------------------");
+                                System.out.println("Pedido de " + pedidoParaLlevar.getCliente().getNombreCompleto());
+                                //save in a variable the array of productos
+                                ArrayList<Producto> productosParaLlevar = pedidoParaLlevar.getProducto();
+                                //iterate the array of productos
+                                for (Producto producto : productosParaLlevar) {
+                                    //display the productos
+                                    if (producto != null) {
+                                        System.out.println("Descripcion del producto: " + producto.getDescripcionProducto());
+                                        System.out.println("Precio del producto: " + producto.getCostoIndividualProducto());
+                                        System.out.println("Categoria del producto: " + producto.getTipoCategoria());
+                                        System.out.println("\n");
+                                    }
+                                }
+                                System.out.println("Hora del pedido: " + pedidoParaLlevar.getHoraPedido());
+                                System.out.println("Estado de finalizado: " + pedidoParaLlevar.isFinalizado());
+                                System.out.println("Hora de entrega: " + pedidoParaLlevar.getHora());
+                                System.out.println("Fecha de entrega: " + pedidoParaLlevar.getFecha());
+                                System.out.println("-------------------------------------------------");
                             }
                         }
                         break;
@@ -184,7 +224,6 @@ public class MainConfOrders {
                 //System.out.println("Pedidos para el restaurante");
                 //Create a new instance of the MainOrderSystem class
                 //Call the method to get the pedidos
-                ArrayList<PedidoLocal> pedidosLocals = mainOrderSystem.getPedidosLocales();
                 
                 //Show the options to do with the pedido
                 System.out.println("Digite el numero de la opcion que desea realizar");
@@ -205,11 +244,29 @@ public class MainConfOrders {
                             //Verify if the name of the employee is the same that the user input
                             if (nombreEmpleadoPedido.equals(nombreEmpleado)) {
                                 //display the pedido
-                                System.out.println(pedidoLocal.toString());
+                                System.out.println("-------------------------------------------------");
+                                System.out.println("Pedido de " + pedidoLocal.getCliente().getNombreCompleto());
+                                //save in a variable the array of productos
+                                ArrayList<Producto> productosLocal = pedidoLocal.getProducto();
+                                //display the productos
+                                for (Producto producto : productosLocal) {
+                                    //display the productos
+                                    if (producto != null) {
+                                        System.out.println("Descripcion del producto: " + producto.getDescripcionProducto());
+                                        System.out.println("Precio del producto: " + producto.getCostoIndividualProducto());
+                                        System.out.println("Categoria del producto: " + producto.getTipoCategoria());
+                                        System.out.println("\n");
+                                    }
+                                }
+
+                                System.out.println("Hora del pedido: " + pedidoLocal.getHoraPedido());
+                                System.out.println("Estado de finalizado: " + pedidoLocal.isFinalizado());
+                                System.out.println("Numero de mesa: " + pedidoLocal.getNumeroMesa());
+                                System.out.println("-------------------------------------------------");
+
                             }
                         }
                         //Go to the main menu
-                        MainConfOrders.main(args);
                         break;
                     case 2:
                         //iterate the pedidos
@@ -226,6 +283,7 @@ public class MainConfOrders {
                                 System.out.println("2. No");
                                 //Read the user input
                                 int optionMark = scanner.nextInt();
+                                scanner.nextLine();
                                 //Create a switch to manage the user input
                                 switch (optionMark) {
                                     case 1:
@@ -240,7 +298,6 @@ public class MainConfOrders {
                             }
                         }
                         //Go to the main menu
-                        MainConfOrders.main(args);
                         break;
                     case 3:
                         //iterate the pedidos to display the status with no import the employee
@@ -249,29 +306,82 @@ public class MainConfOrders {
                             System.out.println("El pedido del cliente " + pedidoLocal.getCliente().getNombreCompleto() + " tiene un estado de finalizado de " + pedidoLocal.isFinalizado());
                         }
                         //Go to the main menu
-                        MainConfOrders.main(args);
                         break;
                     case 4:
-                        try {
-                    MainMenu.App.main(args);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
                         break;
                     default:
                         System.out.println("Opción no válida");
-                        SistemaConfOrdenes.MainConfOrders.main(args);
-
+                        break;
                     }
             case 4:
-                    SistemaPedidos.MainOrderSystem.main(args);
-
-        }
-        
+                return;
+        }   
+    }
     }
 
-    //Listen Orders from server using sockets
-    public void
+
+    public static void readData(){
+          ServerSocket serverSocket = null;
+        Socket clientSocket = null;
+        ObjectInputStream entradaObjeto = null;
+
+        try {
+            serverSocket = new ServerSocket(5001);
+            //System.out.println("Servidor esperando conexiones en el puerto 127.0.0.1");
+
+            while (true) {
+                clientSocket = serverSocket.accept();
+                //System.out.println("Cliente conectado desde " + clientSocket.getInetAddress());
+                entradaObjeto = new ObjectInputStream(clientSocket.getInputStream());
+
+                //System.out.println("Esperando objeto...");
+
+                Object objeto = entradaObjeto.readObject();
+
+
+                if(objeto instanceof PedidoExpress){
+                    PedidoExpress pedido = (PedidoExpress) objeto;
+                    pedidosExpress.add(pedido); 
+                }
+                else if(objeto instanceof PedidoParaLlevar){
+                    PedidoParaLlevar pedido = (PedidoParaLlevar) objeto;
+                    pedidosParaLlevar.add(pedido);
+                }
+                else if(objeto instanceof PedidoLocal){
+                    PedidoLocal pedido = (PedidoLocal) objeto;
+                    pedidosLocals.add(pedido);
+                }
+                else{
+                    System.out.println("No se reconoce el objeto");
+                }
+                               
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (entradaObjeto != null) {
+                    entradaObjeto.close();
+                }
+                if (clientSocket != null) {
+                    clientSocket.close();
+                }
+                if (serverSocket != null) {
+                    serverSocket.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public static void main(String[] args) {
+        Thread menu = new Thread(() -> menu());
+        menu.start();
+
+        Thread readData = new Thread(() -> readData());
+        readData.start();
+    }
 
 }

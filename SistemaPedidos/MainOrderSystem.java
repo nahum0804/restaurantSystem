@@ -6,14 +6,13 @@ import classes.PedidoExpress;
 import classes.PedidoLocal;
 import classes.PedidoParaLlevar;
 import classes.Producto;
-import MainMenu.App;
+
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
@@ -123,22 +122,6 @@ public class MainOrderSystem {
                 String horaPedidoGetted = parts[1];
                 System.out.println("Hora de solicitud del pedido:" + horaPedidoGetted);
 
-                
-                // System.out.println("Ingrese si el pedido está entregado (Y/N):");
-                // String entregadoString = scanner.nextLine();
-                // boolean entregado;
-                // if(entregadoString.equals("Y") || entregadoString.equals("y")){
-                //     entregado = true;
-                // }else{
-                //     entregado = false;
-                // }
-
-                 //print the menu of products with the name of the product and the price and the porcentage of discount
-                   /*  System.out.println("Menú de productos");
-                    for (int i = 0; i < productos.size(); i++) {
-                        System.out.println("Producto " + (i+1) + ": " + productos.get(i).getDescripcionProducto() + " Precio: " + productos.get(i).getCostoIndividualProducto() + " Descuento: " + productos.get(i).getDescuentoCategoria() + "%");
-                    } */
-
         //Select the type of pedido to create
         System.out.println("\n");
         System.out.println("Ingrese el tipo de pedido:");
@@ -209,11 +192,6 @@ public class MainOrderSystem {
                     validar = scanner.nextLine();
                     
 
-                        //-----------------------------------------------
-                        //Send using the sender function ----------------
-                        //pedidosExpresses.add(pedidoExpress); //Send using the sender function
-                        //Send using the sender function ----------------
-                        //-----------------------------------------------
                 } while (validar.equals("y"));
 
                 System.out.println("\n");
@@ -293,13 +271,6 @@ public class MainOrderSystem {
                     //scanner.nextLine();
 
                     validar = scanner.nextLine();
-                    //if (validar.equals("y")) {
-                        //-----------------------------------------------
-                        //Send using the sender function ----------------
-                    //pedidosParaLlevars.add(pedidoParaLlevar);  //Send using the sender function
-                        //Send using the sender function ----------------
-                        //-----------------------------------------------
-                    //}
                     
                 } while (validar.equals("y"));
 
@@ -335,10 +306,6 @@ public class MainOrderSystem {
             case 3:
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
-                
-                //System.out.println("-----------------------------");
-                //System.out.println("- Pedido en el restaurante -");
-                //System.out.println("----------------------------");
                 
                
                 // boolean finalizado = scanner.nextBoolean();   Se puede agregar esto a un setter en la clase, ya que el pedido no puede estar listo recien 

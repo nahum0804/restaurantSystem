@@ -18,7 +18,7 @@ public class App {
         System.out.println("Bienvenido al sistema");
         System.out.println("1. Servicio de Servicios a Domicilio");
         System.out.println("2. Servicio de Pedidos");
-        System.out.println("3. Sistema de Segumiento y Confeccion de Ordenes");
+        System.out.println("3. Sistema de Segumiento y Confeccio3n de Ordenes");
 
         //Create a scanner object to read the user input
         Scanner scanner = new Scanner(System.in);
